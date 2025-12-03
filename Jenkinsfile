@@ -7,6 +7,13 @@ pipeline {
                 checkout scm
             }
         }
+     stage('Install Linters') {
+    steps {
+        sh '''
+            npm install htmlhint stylelint eslint
+        '''
+            }
+        }   
         
         stage('Lint HTML') {
             steps {
@@ -42,4 +49,5 @@ pipeline {
         }
     }
 }
+
 
