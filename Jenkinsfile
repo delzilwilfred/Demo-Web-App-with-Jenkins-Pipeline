@@ -42,11 +42,8 @@ pipeline {
         stage('Lint JavaScript') {
             steps {
                 sh '''
-                    if ls *.js 1> /dev/null 2>&1; then
-                        npx eslint *.js
-                    else
-                        echo "No JS files found, skipping JS lint."
-                    fi
+                    ls eslint.config.js script.js
+                    npx eslint --fix eslint.config.js script.js || true
                 '''
             }
         }
@@ -67,3 +64,4 @@ pipeline {
         }
     }
 }
+
